@@ -12,7 +12,4 @@ class Encrypt
   encryption_code
   end
 
-  def encrypt_message
-    character_set = ("a".."z").to_a << " "
-  end
 end
