@@ -28,6 +28,7 @@ class OffsetsTest < MiniTest::Test
   def test_returns_array_of_the_last_4_digits_of_squared_date
     assert_equal [3,1,6,1], @offsets.numbers
   end
+
   def test_offset_generator
     @offsets.offset_generator
 
@@ -35,4 +36,10 @@ class OffsetsTest < MiniTest::Test
     assert_equal expected, @offsets.offset_keys
   end
 
+  def test_the_offsets_returns_4_valid_offsets
+      @offsets.the_offsets
+
+    expected = {"A" => 3, "B" => 1, "C" => 6, "D" => 1}
+    assert_equal expected, @offsets.offset_keys
+  end 
 end

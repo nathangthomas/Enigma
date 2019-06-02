@@ -39,4 +39,9 @@ class KeysTest < MiniTest::Test
     assert_equal 4, @keys.rand_keys.length
   end
 
+  def test_the_keys_returns_4_valid_keys
+    @keys.the_keys
+
+    assert_equal 4, @keys.rand_keys.length
+  end
 end
