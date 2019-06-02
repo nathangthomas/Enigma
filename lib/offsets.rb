@@ -23,8 +23,5 @@ class Offsets
     @offset_keys["C"] = @numbers[2]
     @offset_keys["D"] = @numbers[3]
   end
-
-  def the_offsets
-    offset_generator
-  end
+  
 end
