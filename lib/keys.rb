@@ -17,7 +17,7 @@ class Keys
     @rand_keys["D"] = @random_numbers[3] + @random_numbers[4]
   end
 
-  def the_keys
+  def random_key_generator
     random_number_generator
     key_generator
   end
