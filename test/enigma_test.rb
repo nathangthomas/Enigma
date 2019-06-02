@@ -21,4 +21,8 @@ class EnigmaTest < MiniTest::Test
   def test_it_has_attributes
     assert_equal "Hello World", @enigma.message
   end
+
+  def test_message_is_all_lower_case
+    assert_equal "hello world", @enigma.make_message_lowercase
+  end
 end
