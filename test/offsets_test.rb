@@ -14,23 +14,24 @@ class OffsetsTest < MiniTest::Test
   end
 
   def test_it_exists
-
     assert_instance_of Offsets, @offsets
   end
 
   def test_it_has_attributes
-
-    assert_equal "060119", @offsets.date
+    assert_equal "010619", @offsets.date
   end
 
-  def test_date_squared
-    assert_equal [4,1,6,1], @offsets.numbers
+  def test_sqaure_date
+    assert_equal 112763161, @offsets.date_squared
   end
 
+  def test_returns_array_of_the_last_4_digits_of_squared_date
+    assert_equal [3,1,6,1], @offsets.numbers
+  end
   def test_offset_generator
     @offsets.offset_generator
 
-    expected = {"A" => 4, "B" => 1, "C" => 6, "D" => 1}
+    expected = {"A" => 3, "B" => 1, "C" => 6, "D" => 1}
     assert_equal expected, @offsets.offset_keys
   end
 
