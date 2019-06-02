@@ -22,7 +22,13 @@ class EnigmaTest < MiniTest::Test
     assert_equal "Hello World", @enigma.message
   end
 
-  def test_message_is_all_lower_case
-    assert_equal "hello world", @enigma.make_message_lowercase
+  def test_it_can_transform_message_to_ordinal_values
+    assert_equal [104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100], @enigma.transform_message_to_ordinal_values
   end
+  
+  # def test_it_can_encrypt
+  #   assert_equal "hello wolrd", @enigma.encrypt
+  # end
+
+
 end
