@@ -34,4 +34,11 @@ class ShifterTest < MiniTest::Test
     assert_equal 4, @shifter.shift_code.length
     #How else can I test this?
   end
+
+  def test_it_can_shift
+    assert_equal 0, @shifter.shift("Hello World")
+  end
+
+  def test_it_can_unshift
+    assert_equal 0, @shifter.shift("vugybpraeaz")
 end
