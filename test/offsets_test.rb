@@ -3,6 +3,7 @@ SimpleCov.start
 require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/keys'
 require './lib/offsets'
 require 'date'
@@ -41,5 +42,5 @@ class OffsetsTest < MiniTest::Test
 
     expected = {"A" => 3, "B" => 1, "C" => 6, "D" => 1}
     assert_equal expected, @offsets.offset_keys
-  end 
+  end
 end
