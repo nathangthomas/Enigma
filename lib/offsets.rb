@@ -2,8 +2,8 @@ require 'date'
 class Offsets
   attr_reader :date, :numbers, :offset_keys
 
-  def initialize(date)
-    @date = Time.now.strftime("%d%m%y")
+  def initialize(date = Time.now.strftime("%d%m%y"))
+    @date = date
     @numbers = last_4_digits_of_squared_date
     @offset_keys = {}
   end
@@ -23,5 +23,5 @@ class Offsets
     @offset_keys["C"] = @numbers[2]
     @offset_keys["D"] = @numbers[3]
   end
-  
+
 end
