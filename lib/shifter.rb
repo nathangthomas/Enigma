@@ -8,7 +8,7 @@ class Shifter
   def shift_code
    @keys.merge(@offsets) do |key, rand_key, offset_key|
       rand_key + offset_key
-    end 
+    end
   end
 
   def shift(message)
