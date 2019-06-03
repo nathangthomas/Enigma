@@ -13,7 +13,6 @@ class OffsetsTest < MiniTest::Test
   def setup
     @offsets_1 = Offsets.new("010619")
     @offsets_2 = Offsets.new
-
   end
 
   def test_it_exists
@@ -27,12 +26,11 @@ class OffsetsTest < MiniTest::Test
   def test_it_has_default_parameter
       @offsets_2.stub :date, "010319" do
       assert_equal "010319", @offsets_2.date
-    end 
+    end
   end
 
   def test_sqaure_date
     assert_equal 112763161, @offsets_1.date_squared
-
   end
 
   def test_returns_array_of_the_last_4_digits_of_squared_date
