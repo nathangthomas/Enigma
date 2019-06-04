@@ -17,8 +17,10 @@ class KeysTest < MiniTest::Test
   end
 
   def test_it_has_attributes
-    expected = {}
-    assert_equal expected, @keys.rand_keys
+    @keys_2 = Keys.new("12345")
+    assert_equal "12345", @keys_2.random_numbers
+    expected = {"A"=>12, "B"=>23, "C"=>34, "D"=>45}
+    assert_equal expected, @keys_2.rand_keys
   end
 
   def test_random_number_generator
