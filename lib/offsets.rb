@@ -9,7 +9,7 @@ class Offsets
   end
 
   def date_squared
-    square_of_date = @date.to_i ** 2
+    @date.to_i ** 2
   end
 
   def last_4_digits_of_squared_date
