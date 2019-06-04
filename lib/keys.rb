@@ -1,13 +1,15 @@
 class Keys
   attr_reader :num, :random_numbers, :rand_keys
 
-  def initialize
-    @random_numbers = []
+  def initialize(random_numbers = random_number_generator)
+    @random_numbers = random_numbers.to_s.split(//).map {|char| char.to_i}
     @rand_keys = {}
   end
 
   def random_number_generator
-    5.times{random_numbers << rand(10)}
+    num_array = ""
+    5.times{num_array << rand(10).to_s}
+    num_array
   end
 
   def key_generator
@@ -15,11 +17,6 @@ class Keys
     @rand_keys["B"] = @random_numbers[1] + @random_numbers[2]
     @rand_keys["C"] = @random_numbers[2] + @random_numbers[3]
     @rand_keys["D"] = @random_numbers[3] + @random_numbers[4]
+    @rand_keys
   end
-
-  def random_key_generator
-    random_number_generator
-    key_generator
-  end
-
 end
