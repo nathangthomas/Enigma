@@ -32,7 +32,7 @@ class KeysTest < MiniTest::Test
   end
 
   def test_it_can_take_five_numbers_as_optional_parameter
-    @keys_2 = Keys.new(12345)
+    @keys_2 = Keys.new("12345")
     @keys_2.random_number_generator
 
     assert_equal [1,2,3,4,5], @keys_2.random_numbers
