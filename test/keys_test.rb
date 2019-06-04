@@ -17,8 +17,10 @@ class KeysTest < MiniTest::Test
   end
 
   def test_it_has_attributes
-    expected = {}
-    assert_equal expected, @keys.rand_keys
+    @keys_2 = Keys.new("12345")
+    assert_equal "12345", @keys_2.random_numbers
+    expected = {"A"=>12, "B"=>23, "C"=>34, "D"=>45}
+    assert_equal expected, @keys_2.rand_keys
   end
 
   def test_random_number_generator
@@ -26,16 +28,16 @@ class KeysTest < MiniTest::Test
 
     assert_equal 5, @keys.random_numbers.length
 
-    @keys.random_numbers.each do |random_number|
-    assert random_number < 10
+    @keys.random_numbers.split(//).each do |random_number|
+    assert random_number.to_i < 10
     end
   end
 
   def test_it_can_take_five_numbers_as_optional_parameter
-    @keys_2 = Keys.new(12345)
+    @keys_2 = Keys.new("12345")
     @keys_2.random_number_generator
 
-    assert_equal [1,2,3,4,5], @keys_2.random_numbers
+    assert_equal "12345", @keys_2.random_numbers
   end
 
   def test_key_generator

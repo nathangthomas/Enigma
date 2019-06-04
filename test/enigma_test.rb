@@ -4,45 +4,71 @@ require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'mocha/minitest'
+require 'date'
 require './lib/keys'
 require './lib/offsets'
 require './lib/shifter'
-require 'date'
 require './lib/enigma'
 require 'pry'
 
 class EnigmaTest < MiniTest::Test
-  def setup
-    @keys = Keys.new
-    @offsets = Offsets.new("010619")
-    @keys.random_key_generator
-    @offsets.offset_generator
-
-    @shifter = Shifter.new(@keys.rand_keys, @offsets.offset_keys)
-
-    @enigma = Enigma.new
-  end
+   def setup
+     @enigma = Enigma.new
+   end
 
   def test_it_exists
     assert_instance_of Enigma, @enigma
   end
 
-  def test_it_encrypts
-    expected =
-    assert_equal expected, enigma.encrypt("hello world", "02715", "010619")
+  def test_it_can_encrypt_a_message_with_a_key_and_date
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"
+                }
+    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
 
-  # def test_it_has_attributes
-  #   assert_equal "Hello World", @enigma.message
-  # end
+  def test_it_can_decrypt_a_message_with_a_key_and_date
+    expected = {
+                decryption: "hello world",
+                key: "02715",
+                date: "040895"
+                }
+    assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
+  end
 
-  # def test_it_can_encrypt
-    #expected = {encryption:"?", key:?, date: "02715"}
-  #   assert_equal "hello wolrd", @enigma.encrypt
-  # end
+  def test_it_can_encrypt_a_message_with_a_key
+    #uses today's date
+    expected = {
+                encryption: "?",
+                key: "02715",
+                date: "?"
+                }
+    refute_equal expected, @enigma.encrypt("hello world", "02715")
+  end
 
-  # def test_it_can_decrypt
-  #   expected = {decryption:"?", key:?, date: "02715"}
-  #     assert_equal "?", @enigma.decrypt
-  # end
+  def test_it_can_decrypt_a_message_with_a_key
+    #uses today's date
+    expected = {
+                decryption: "hello world",
+                key: "02715",
+                date: "040619"
+                }
+    refute_equal expected, @enigma.decrypt("nkyvufiyxrq", "02715")
+  end
+  #
+  def test_it_can_encrypt_a_message_with_random_key_and_date_of_today
+    rand_keys_hash = {"A"=>12, "B"=>23, "C"=>34, "D"=>45}
+    Keys.any_instance.stubs(:random_numbers).returns("12345")
+    Keys.any_instance.stubs(:rand_keys).returns(rand_keys_hash)
+    Time.any_instance.stubs(:strftime).returns("030619")
+
+        expected = {
+                encryption: "nkyvufiyxrq",
+                key: "12345",
+                date: "030619"
+                }
+    refute_equal expected, @enigma.encrypt("hello world")
+  end
 end
