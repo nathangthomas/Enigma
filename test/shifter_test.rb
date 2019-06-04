@@ -7,14 +7,16 @@ require 'mocha/minitest'
 require './lib/keys'
 require './lib/offsets'
 require './lib/shifter'
+require 'date'
 require 'pry'
 
 
 class ShifterTest < MiniTest::Test
   def setup
-    @keys = Keys.new
+    @keys = Keys.new("12345")
     @offsets = Offsets.new("010619")
-    @keys.random_key_generator
+
+    @keys.key_generator
     @offsets.offset_generator
 
     @shifter = Shifter.new(@keys.rand_keys, @offsets.offset_keys)
@@ -32,15 +34,7 @@ class ShifterTest < MiniTest::Test
 
   def test_shift_code
     assert_equal 4, @shifter.shift_code.length
-    #How else can I test this?
-  end
-
-  def test_it_can_shift
-    assert_equal 0, @shifter.shift("Hello World")
-  end
-
-  def test_it_can_unshift
-    assert_equal 0, @shifter.unshift(@shifter.shift("Hello World"))
-    #Last two tests and the code in shifter that goes with it belongs in enigma since encrypt and decrypt are supposed to live there.
+    expected = {"A"=>6, "B"=>6, "C"=>13, "D"=>10}
+    assert_equal expected, @shifter.shift_code
   end
 end
