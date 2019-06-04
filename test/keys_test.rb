@@ -31,7 +31,7 @@ class KeysTest < MiniTest::Test
     end
   end
 
-  def test_it_can_take_five_numbers_as_optional_argument
+  def test_it_can_take_five_numbers_as_optional_parameter
     @keys_2 = Keys.new(12345)
     @keys_2.random_number_generator
 
