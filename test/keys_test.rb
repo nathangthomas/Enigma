@@ -9,11 +9,11 @@ require 'pry'
 
 class KeysTest < MiniTest::Test
   def setup
-    @keys = Keys.new
+    @keys_1 = Keys.new
   end
 
   def test_it_exists
-    assert_instance_of Keys, @keys
+    assert_instance_of Keys, @keys_1
   end
 
   def test_it_has_attributes
@@ -24,11 +24,11 @@ class KeysTest < MiniTest::Test
   end
 
   def test_random_number_generator
-    @keys.random_number_generator
+    @keys_1.random_number_generator
 
-    assert_equal 5, @keys.random_numbers.length
+    assert_equal 5, @keys_1.random_numbers.length
 
-    @keys.random_numbers.split(//).each do |random_number|
+    @keys_1.random_numbers.split(//).each do |random_number|
     assert random_number.to_i < 10
     end
   end
@@ -41,16 +41,9 @@ class KeysTest < MiniTest::Test
   end
 
   def test_key_generator
-    @keys.random_number_generator
-    @keys.key_generator
+    @keys_1.random_number_generator
+    @keys_1.key_generator
 
-    assert_equal 4, @keys.rand_keys.length
-  end
-
-  def test_the_keys_returns_4_valid_keys
-    @keys.random_number_generator
-    @keys.key_generator
-
-    assert_equal 4, @keys.rand_keys.length
+    assert_equal 4, @keys_1.rand_keys.length
   end
 end
