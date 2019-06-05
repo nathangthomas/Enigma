@@ -1,6 +1,6 @@
 class Enigma
 
-  def random_number_generator
+  def number_generator
     num_array = ""
     5.times{num_array << rand(10).to_s}
     num_array
@@ -10,7 +10,7 @@ class Enigma
     ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key = random_number_generator, date = Time.now.strftime("%d%m%y"))
+  def encrypt(message, key = number_generator, date = Time.now.strftime("%d%m%y"))
     key_hash = Keys.new(key)
     offset_hash = Offsets.new(date)
     shift = Shifter.new(key_hash.rand_keys, offset_hash.offset_keys).shift_code
@@ -28,7 +28,7 @@ class Enigma
     {encryption: encrypted_message, key: key, date: date}
   end
 
-  def decrypt(ciphertext, key = random_number_generator, date = Time.now.strftime("%d%m%y"))
+  def decrypt(ciphertext, key = number_generator, date = Time.now.strftime("%d%m%y"))
 
     key_hash = Keys.new(key)
     offset_hash = Offsets.new(date)
@@ -39,9 +39,7 @@ class Enigma
     interval = shift.keys.length
 
     reverse_shift = Hash.new{0}
-    shift.each do |key, value|
-      reverse_shift[key] = value * -1
-    end
+    shift.each{|key, value| reverse_shift[key] = value * -1}
 
     ciphertext_to_array.each_with_index do |letter, index|
       keys_array = reverse_shift.keys

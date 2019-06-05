@@ -23,8 +23,8 @@ class KeysTest < MiniTest::Test
     assert_equal expected, @keys_2.rand_keys
   end
 
-  def test_random_number_generator
-    @keys_1.random_number_generator
+  def test_number_generator
+    @keys_1.number_generator
 
     assert_equal 5, @keys_1.random_numbers.length
 
@@ -40,13 +40,13 @@ class KeysTest < MiniTest::Test
 
   def test_it_can_take_five_numbers_as_optional_parameter
     @keys_2 = Keys.new("12345")
-    @keys_2.random_number_generator
+    @keys_2.number_generator
 
     assert_equal "12345", @keys_2.random_numbers
   end
 
   def test_key_generator
-    @keys_1.random_number_generator
+    @keys_1.number_generator
     @keys_1.key_generator
 
     assert_equal 4, @keys_1.rand_keys.length
