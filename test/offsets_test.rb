@@ -16,6 +16,7 @@ class OffsetsTest < MiniTest::Test
   end
 
   def test_it_exists
+    Keys.any_instance.stubs(:random_numbers).returns("12345")
     assert_instance_of Offsets, @offsets_1
   end
 
@@ -44,10 +45,9 @@ class OffsetsTest < MiniTest::Test
     assert_equal expected, @offsets_1.offset_keys
   end
 
-  def test_the_offsets_returns_4_valid_offsets
+  def test_the_offsets_returns_4_offsets
     @offsets_1.offset_generator
 
-    expected = {"A" => 3, "B" => 1, "C" => 6, "D" => 1}
-    assert_equal expected, @offsets_1.offset_keys
+    assert_equal 4, @offsets_1.offset_keys.length
   end
 end

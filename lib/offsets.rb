@@ -1,4 +1,5 @@
 require 'date'
+
 class Offsets
   attr_reader :date, :numbers, :offset_keys
 
@@ -25,5 +26,4 @@ class Offsets
     offset_keys["D"] = @numbers[3]
     offset_keys
   end
-
 end
