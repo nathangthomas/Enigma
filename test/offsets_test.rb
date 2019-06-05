@@ -16,6 +16,7 @@ class OffsetsTest < MiniTest::Test
   end
 
   def test_it_exists
+    Keys.any_instance.stubs(:random_numbers).returns("12345")
     assert_instance_of Offsets, @offsets_1
   end
 
