@@ -73,13 +73,12 @@ class EnigmaTest < MiniTest::Test
     refute_equal expected, @enigma.encrypt("hello world")
   end
 
-  # def test_it_will_skip_special_characters
-  #   expected = {
-  #               encryption: "?keder.ohulw!",
-  #               key: "02715",
-  #               date: "040895"
-  #               }
-  #   assert_equal expected, @enigma.encrypt("helloworld", "02715", "040895")
-  # end
-
+  def test_it_will_skip_special_characters
+    expected = {
+                encryption: "?hxeoo_prrdx!",
+                key: "02715",
+                date: "040895"
+                }
+    assert_equal expected, @enigma.encrypt("?hello_world!", "02715", "040895")
+  end
 end
