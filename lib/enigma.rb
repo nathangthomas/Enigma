@@ -39,9 +39,7 @@ class Enigma
     interval = shift.keys.length
 
     reverse_shift = Hash.new{0}
-    shift.each do |key, value|
-      reverse_shift[key] = value * -1
-    end
+    shift.each{|key, value| reverse_shift[key] = value * -1}
 
     ciphertext_to_array.each_with_index do |letter, index|
       keys_array = reverse_shift.keys
