@@ -1,6 +1,6 @@
 class Enigma
 
-#common method
+#common method (maybe put this in a module)
   def random_number_generator
     num_array = ""
     5.times{num_array << rand(10).to_s}
@@ -18,6 +18,7 @@ class Enigma
     interval = shift.keys.length
 
     message_to_array.each_with_index do |letter, index|
+
       keys_array = shift.keys
       current_key = keys_array[index % interval]
       shift_array = alphabet.rotate(shift[current_key])

@@ -1,5 +1,5 @@
 class Keys
-  attr_reader :num, :random_numbers, :rand_keys
+  attr_reader :random_numbers, :rand_keys
 
   def initialize(random_numbers = random_number_generator)
     @random_numbers = random_numbers
