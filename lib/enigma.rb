@@ -1,10 +1,13 @@
 class Enigma
 
-#common method (maybe put this in a module)
   def random_number_generator
     num_array = ""
     5.times{num_array << rand(10).to_s}
     num_array
+  end
+
+  def alphabet
+    ("a".."z").to_a << " "
   end
 
   def encrypt(message, key = random_number_generator, date = Time.now.strftime("%d%m%y"))
@@ -14,11 +17,9 @@ class Enigma
 
     message_to_array = message.downcase.chars
     encrypted_message = ""
-    alphabet = ("a".."z").to_a << " "
     interval = shift.keys.length
 
     message_to_array.each_with_index do |letter, index|
-
       keys_array = shift.keys
       current_key = keys_array[index % interval]
       shift_array = alphabet.rotate(shift[current_key])
@@ -35,7 +36,6 @@ class Enigma
 
     ciphertext_to_array = ciphertext.chars
     decrypted_message = ""
-    alphabet = ("a".."z").to_a << " "
     interval = shift.keys.length
 
     reverse_shift = Hash.new{0}
