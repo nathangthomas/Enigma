@@ -1,1 +1,18 @@
-# Additionally, you should create a Runner file called decrypt.rb that takes four command line arguments. The first is an existing file that contains an encrypted message. The second is a file where your program should write the decrypted message. The third is the key to be used for decryption. The fourth is the date to be used for decryption. In addition to writing the decrypted message to the file, your program should output to the screen the file it wrote to, the key used for decryption, and the date used for decryption.
+require 'date'
+require './lib/keys'
+require './lib/offsets'
+require './lib/shifter'
+require './lib/enigma'
+
+encrypted, decrypted, key, date = ARGV
+
+encrypted_message = File.open(encrypted, "r")
+
+decrypted = File.open(decrypted, "w")
+
+encrypted_message = Enigma.new.decrypt(encrypted_message.read, key, date)
+
+decrypted.write(encrypted_message[:decryption])
+decrypted.close
+
+p "Created #{decrypted} with the key #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
