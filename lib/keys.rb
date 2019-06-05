@@ -1,12 +1,12 @@
 class Keys
   attr_reader :random_numbers, :rand_keys
 
-  def initialize(random_numbers = random_number_generator)
+  def initialize(random_numbers = number_generator)
     @random_numbers = random_numbers
     @rand_keys = key_generator
   end
 
-  def random_number_generator
+  def number_generator
     num_array = ""
     5.times{num_array << rand(10).to_s}
     num_array
