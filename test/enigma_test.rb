@@ -39,35 +39,36 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_it_can_encrypt_a_message_with_a_key
-    #uses today's date
+    Time.any_instance.stubs(:strftime).returns("040619")
     expected = {
-                encryption: "?",
+                encryption: "mfhatasdwm ",
                 key: "02715",
-                date: "?"
+                date: "040619"
                 }
-    refute_equal expected, @enigma.encrypt("hello world", "02715")
+    assert_equal expected, @enigma.encrypt("hello world", "02715")
   end
 
   def test_it_can_decrypt_a_message_with_a_key
-    #uses today's date
+    Time.any_instance.stubs(:strftime).returns("040619")
     expected = {
                 decryption: "hello world",
                 key: "02715",
                 date: "040619"
                 }
-    refute_equal expected, @enigma.decrypt("nkyvufiyxrq", "02715")
+    assert_equal expected, @enigma.decrypt("mfhatasdwm ", "02715")
   end
-  #
+
+  #non working test below
   def test_it_can_encrypt_a_message_with_random_key_and_date_of_today
-    rand_keys_hash = {"A"=>12, "B"=>23, "C"=>34, "D"=>45}
-    Keys.any_instance.stubs(:random_numbers).returns("12345")
-    Keys.any_instance.stubs(:rand_keys).returns(rand_keys_hash)
-    Time.any_instance.stubs(:strftime).returns("030619")
+    rand_keys_hash = {"A"=>15, "B"=>24, "C"=>40, "D"=>46}
+    Shifter.any_instance.stubs(:keys).returns("12345")
+    Shifter.any_instance.stubs(:shift_code).returns(rand_keys_hash)
+    Time.any_instance.stubs(:strftime).returns("040619")
 
         expected = {
-                encryption: "nkyvufiyxrq",
+                encryption: "wbydcxigfiq",
                 key: "12345",
-                date: "030619"
+                date: "040619"
                 }
     refute_equal expected, @enigma.encrypt("hello world")
   end
