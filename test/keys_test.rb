@@ -33,6 +33,11 @@ class KeysTest < MiniTest::Test
     end
   end
 
+  def test_case_name
+    Keys.any_instance.stubs(:random_numbers).returns("12345")
+    assert_equal "12345", @keys_1.random_numbers
+  end
+
   def test_it_can_take_five_numbers_as_optional_parameter
     @keys_2 = Keys.new("12345")
     @keys_2.random_number_generator
