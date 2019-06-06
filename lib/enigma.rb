@@ -1,5 +1,5 @@
 class Enigma
-
+#get rid of this number_generator for a 3 
   def number_generator
     num_array = ""
     5.times{num_array << rand(10).to_s}
@@ -14,7 +14,7 @@ class Enigma
     key_hash = Keys.new(key)
     offset_hash = Offsets.new(date)
     shift = Shifter.new(key_hash.rand_keys, offset_hash.offset_keys).shift_code
-
+    # final_message = Rotation.new(message,shift).
     message_to_array = message.downcase.chars
     encrypted_message = ""
     interval = shift.keys.length
@@ -48,10 +48,14 @@ class Enigma
     end
 
     ciphertext_to_array.each_with_index do |letter, index|
-      keys_array = reverse_shift.keys
-      current_key = keys_array[index % interval]
-      decrypt_array = alphabet.rotate(reverse_shift[current_key])
-      decrypted_message << decrypt_array[alphabet.index(letter)]
+      if alphabet.include?(letter)
+        keys_array = reverse_shift.keys
+        current_key = keys_array[index % interval]
+        decrypt_array = alphabet.rotate(reverse_shift[current_key])
+        decrypted_message << decrypt_array[alphabet.index(letter)]
+      else
+        decrypted_message << letter
+      end
     end
     {decryption: decrypted_message, key: key, date: date}
   end
