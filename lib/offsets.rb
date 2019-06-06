@@ -14,8 +14,7 @@ class Offsets
   end
 
   def last_4_digits_of_squared_date
-    last_4 = date_squared.to_s[-4..-1]
-    last_4.split(//).map{|num| num.to_i}
+    (@date.to_i ** 2).to_s[-4..-1].split(//).map{|num| num.to_i}
   end
 
   def offset_generator

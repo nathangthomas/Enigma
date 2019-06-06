@@ -3,7 +3,6 @@ class Keys
 
   def initialize(random_numbers = number_generator)
     @random_numbers = random_numbers
-    @rand_keys = key_generator
   end
 
   def number_generator
