@@ -22,7 +22,7 @@ class KeysTest < MiniTest::Test
     expected = {"A"=>12, "B"=>23, "C"=>34, "D"=>45}
     assert_equal expected, @keys_2.rand_keys
   end
-
+  
   def test_number_generator
     @keys_1.number_generator
 

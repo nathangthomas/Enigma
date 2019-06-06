@@ -1,20 +1,14 @@
 class Enigma
-#get rid of this number_generator for a 3 
-  def number_generator
-    num_array = ""
-    5.times{num_array << rand(10).to_s}
-    num_array
-  end
 
   def alphabet
     ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key = number_generator, date = Time.now.strftime("%d%m%y"))
-    key_hash = Keys.new(key)
-    offset_hash = Offsets.new(date)
-    shift = Shifter.new(key_hash.rand_keys, offset_hash.offset_keys).shift_code
-    # final_message = Rotation.new(message,shift).
+  def encrypt(message, key = Keys.new.random_numbers, date = Offsets.new.date)
+    key_hash = Keys.new(key).key_generator
+    offset_hash = Offsets.new(date).offset_generator
+    shift = Shifter.new(key_hash, offset_hash).shift_code
+
     message_to_array = message.downcase.chars
     encrypted_message = ""
     interval = shift.keys.length
@@ -32,11 +26,11 @@ class Enigma
     {encryption: encrypted_message, key: key, date: date}
   end
 
-  def decrypt(ciphertext, key = number_generator, date = Time.now.strftime("%d%m%y"))
+  def decrypt(ciphertext, key = Keys.new.random_numbers, date = Offsets.new.date)
 
-    key_hash = Keys.new(key)
-    offset_hash = Offsets.new(date)
-    shift = Shifter.new(key_hash.rand_keys, offset_hash.offset_keys).shift_code
+    key_hash = Keys.new(key).key_generator
+    offset_hash = Offsets.new(date).offset_generator
+    shift = Shifter.new(key_hash, offset_hash).shift_code
 
     ciphertext_to_array = ciphertext.chars
     decrypted_message = ""

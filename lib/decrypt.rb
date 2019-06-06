@@ -4,16 +4,11 @@ require './lib/offsets'
 require './lib/shifter'
 require './lib/enigma'
 
-encrypted, decrypted, key, date = ARGV
+encrypted_message = File.open(ARGV[0], "r")
 
-encrypted_message = File.open(encrypted, "r")
+decrypted_message = Enigma.new.decrypt(encrypted_message.read, ARGV[2], ARGV[3])
 
-decrypted = File.open(decrypted, "w")
+decrypted = File.open(ARGV[1], "w")
+decrypted.write(decrypted_message[:decryption])
 
-encrypted_message = Enigma.new.decrypt(encrypted_message.read, key, date)
-
-decrypted.write(encrypted_message[:decryption])
-
-decrypted.close
-
-p "Created #{decrypted} with the key #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
+p "Created #{ARGV[1]} with the key #{ARGV[2]} and date #{ARGV[3]}"
